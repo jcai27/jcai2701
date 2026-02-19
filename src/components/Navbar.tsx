@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Menu, X } from "lucide-react";
-import { personalInfo } from "@/data/portfolio";
+import { usePortfolio } from "@/context/PortfolioContext";
 
 const navItems = [
   { label: "Home", href: "/#hero" },
@@ -9,11 +9,15 @@ const navItems = [
   { label: "Projects", href: "/#projects" },
   { label: "Resume", href: "/resume" },
   { label: "Contact", href: "/#contact" },
+  { label: "Admin", href: "/admin" },
 ];
 
 const Navbar = () => {
   const [open, setOpen] = useState(false);
   const location = useLocation();
+  const {
+    data: { personalInfo },
+  } = usePortfolio();
 
   const handleClick = (href: string) => {
     setOpen(false);

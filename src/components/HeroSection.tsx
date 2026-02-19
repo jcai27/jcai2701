@@ -1,8 +1,13 @@
 import { ArrowDown, FileText } from "lucide-react";
-import { personalInfo } from "@/data/portfolio";
 import { motion } from "framer-motion";
+import { usePortfolio } from "@/context/PortfolioContext";
 
 const HeroSection = () => {
+  const {
+    data: { personalInfo },
+    resumeUrl,
+  } = usePortfolio();
+
   const scrollTo = (id: string) => {
     document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
   };
@@ -32,10 +37,12 @@ const HeroSection = () => {
             View Projects <ArrowDown size={16} />
           </button>
           <a
-            href="/resume"
+            href={resumeUrl}
+            target="_blank"
+            rel="noopener noreferrer"
             className="inline-flex items-center gap-2 rounded-full border border-border px-6 py-3 text-sm font-medium text-foreground transition-colors hover:bg-secondary"
           >
-            <FileText size={16} /> Resume
+            <FileText size={16} /> Download Resume
           </a>
         </div>
       </motion.div>

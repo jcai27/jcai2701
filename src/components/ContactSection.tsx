@@ -1,10 +1,13 @@
 import { useState } from "react";
-import { personalInfo } from "@/data/portfolio";
 import { Github, Linkedin, Mail, Send } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { motion } from "framer-motion";
+import { usePortfolio } from "@/context/PortfolioContext";
 
 const ContactSection = () => {
+  const {
+    data: { personalInfo },
+  } = usePortfolio();
   const { toast } = useToast();
   const [form, setForm] = useState({ name: "", email: "", message: "" });
 
