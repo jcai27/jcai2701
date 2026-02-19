@@ -28,12 +28,22 @@ const emptyEducation: Education = {
   description: "",
 };
 
+const moveItem = <T,>(items: T[], from: number, to: number) => {
+  const next = [...items];
+  const [moved] = next.splice(from, 1);
+  next.splice(to, 0, moved);
+  return next;
+};
+
 const Admin = () => {
   const { data, saveData, resetData, isServerConfigured } = usePortfolio();
   const { toast } = useToast();
   const [draft, setDraft] = useState<PortfolioData>(data);
   const [newSkill, setNewSkill] = useState("");
   const [isSaving, setIsSaving] = useState(false);
+  const [draggingProjectIndex, setDraggingProjectIndex] = useState<number | null>(null);
+  const [draggingExperienceIndex, setDraggingExperienceIndex] = useState<number | null>(null);
+  const [draggingEducationIndex, setDraggingEducationIndex] = useState<number | null>(null);
 
   useEffect(() => {
     setDraft(data);
@@ -142,6 +152,39 @@ const Admin = () => {
       }
     }
     setPersonalField("avatarUrl", assetUrl);
+  };
+
+  const reorderProjects = (toIndex: number) => {
+    setDraft((prev) => {
+      if (draggingProjectIndex === null || draggingProjectIndex === toIndex) return prev;
+      return {
+        ...prev,
+        projects: moveItem(prev.projects, draggingProjectIndex, toIndex),
+      };
+    });
+    setDraggingProjectIndex(null);
+  };
+
+  const reorderExperience = (toIndex: number) => {
+    setDraft((prev) => {
+      if (draggingExperienceIndex === null || draggingExperienceIndex === toIndex) return prev;
+      return {
+        ...prev,
+        experience: moveItem(prev.experience, draggingExperienceIndex, toIndex),
+      };
+    });
+    setDraggingExperienceIndex(null);
+  };
+
+  const reorderEducation = (toIndex: number) => {
+    setDraft((prev) => {
+      if (draggingEducationIndex === null || draggingEducationIndex === toIndex) return prev;
+      return {
+        ...prev,
+        education: moveItem(prev.education, draggingEducationIndex, toIndex),
+      };
+    });
+    setDraggingEducationIndex(null);
   };
 
   return (
@@ -268,7 +311,16 @@ const Admin = () => {
             </div>
             <div className="mt-5 space-y-4">
               {draft.projects.map((project, idx) => (
-                <div key={`project-${idx}`} className="rounded-lg border border-border p-4">
+                <div
+                  key={`project-${idx}`}
+                  draggable
+                  onDragStart={() => setDraggingProjectIndex(idx)}
+                  onDragOver={(e) => e.preventDefault()}
+                  onDrop={() => reorderProjects(idx)}
+                  onDragEnd={() => setDraggingProjectIndex(null)}
+                  className={`rounded-lg border p-4 ${draggingProjectIndex === idx ? "border-foreground/40 bg-secondary/30" : "border-border"}`}
+                >
+                  <p className="mb-3 text-xs font-medium uppercase tracking-wider text-muted-foreground">Drag to reorder</p>
                   <div className="grid gap-3 sm:grid-cols-2">
                     <input className="rounded-lg border border-border bg-background px-3 py-2 text-sm" value={project.title} onChange={(e) => setDraft((prev) => ({ ...prev, projects: prev.projects.map((p, i) => (i === idx ? { ...p, title: e.target.value } : p)) }))} placeholder="Project title" />
                     <input className="rounded-lg border border-border bg-background px-3 py-2 text-sm" value={project.github} onChange={(e) => setDraft((prev) => ({ ...prev, projects: prev.projects.map((p, i) => (i === idx ? { ...p, github: e.target.value } : p)) }))} placeholder="GitHub URL" />
@@ -299,7 +351,16 @@ const Admin = () => {
             </div>
             <div className="mt-5 space-y-4">
               {draft.experience.map((item, idx) => (
-                <div key={`experience-${idx}`} className="rounded-lg border border-border p-4">
+                <div
+                  key={`experience-${idx}`}
+                  draggable
+                  onDragStart={() => setDraggingExperienceIndex(idx)}
+                  onDragOver={(e) => e.preventDefault()}
+                  onDrop={() => reorderExperience(idx)}
+                  onDragEnd={() => setDraggingExperienceIndex(null)}
+                  className={`rounded-lg border p-4 ${draggingExperienceIndex === idx ? "border-foreground/40 bg-secondary/30" : "border-border"}`}
+                >
+                  <p className="mb-3 text-xs font-medium uppercase tracking-wider text-muted-foreground">Drag to reorder</p>
                   <div className="grid gap-3 sm:grid-cols-2">
                     <input className="rounded-lg border border-border bg-background px-3 py-2 text-sm" value={item.role} onChange={(e) => setDraft((prev) => ({ ...prev, experience: prev.experience.map((x, i) => (i === idx ? { ...x, role: e.target.value } : x)) }))} placeholder="Role" />
                     <input className="rounded-lg border border-border bg-background px-3 py-2 text-sm" value={item.company} onChange={(e) => setDraft((prev) => ({ ...prev, experience: prev.experience.map((x, i) => (i === idx ? { ...x, company: e.target.value } : x)) }))} placeholder="Company" />
@@ -329,7 +390,16 @@ const Admin = () => {
             </div>
             <div className="mt-5 space-y-4">
               {draft.education.map((item, idx) => (
-                <div key={`education-${idx}`} className="rounded-lg border border-border p-4">
+                <div
+                  key={`education-${idx}`}
+                  draggable
+                  onDragStart={() => setDraggingEducationIndex(idx)}
+                  onDragOver={(e) => e.preventDefault()}
+                  onDrop={() => reorderEducation(idx)}
+                  onDragEnd={() => setDraggingEducationIndex(null)}
+                  className={`rounded-lg border p-4 ${draggingEducationIndex === idx ? "border-foreground/40 bg-secondary/30" : "border-border"}`}
+                >
+                  <p className="mb-3 text-xs font-medium uppercase tracking-wider text-muted-foreground">Drag to reorder</p>
                   <div className="grid gap-3 sm:grid-cols-2">
                     <input className="rounded-lg border border-border bg-background px-3 py-2 text-sm" value={item.degree} onChange={(e) => setDraft((prev) => ({ ...prev, education: prev.education.map((x, i) => (i === idx ? { ...x, degree: e.target.value } : x)) }))} placeholder="Degree" />
                     <input className="rounded-lg border border-border bg-background px-3 py-2 text-sm" value={item.school} onChange={(e) => setDraft((prev) => ({ ...prev, education: prev.education.map((x, i) => (i === idx ? { ...x, school: e.target.value } : x)) }))} placeholder="School" />
