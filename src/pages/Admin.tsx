@@ -268,7 +268,7 @@ const Admin = () => {
             </div>
             <div className="mt-5 space-y-4">
               {draft.projects.map((project, idx) => (
-                <div key={`${project.title}-${idx}`} className="rounded-lg border border-border p-4">
+                <div key={`project-${idx}`} className="rounded-lg border border-border p-4">
                   <div className="grid gap-3 sm:grid-cols-2">
                     <input className="rounded-lg border border-border bg-background px-3 py-2 text-sm" value={project.title} onChange={(e) => setDraft((prev) => ({ ...prev, projects: prev.projects.map((p, i) => (i === idx ? { ...p, title: e.target.value } : p)) }))} placeholder="Project title" />
                     <input className="rounded-lg border border-border bg-background px-3 py-2 text-sm" value={project.github} onChange={(e) => setDraft((prev) => ({ ...prev, projects: prev.projects.map((p, i) => (i === idx ? { ...p, github: e.target.value } : p)) }))} placeholder="GitHub URL" />
@@ -299,7 +299,7 @@ const Admin = () => {
             </div>
             <div className="mt-5 space-y-4">
               {draft.experience.map((item, idx) => (
-                <div key={`${item.role}-${idx}`} className="rounded-lg border border-border p-4">
+                <div key={`experience-${idx}`} className="rounded-lg border border-border p-4">
                   <div className="grid gap-3 sm:grid-cols-2">
                     <input className="rounded-lg border border-border bg-background px-3 py-2 text-sm" value={item.role} onChange={(e) => setDraft((prev) => ({ ...prev, experience: prev.experience.map((x, i) => (i === idx ? { ...x, role: e.target.value } : x)) }))} placeholder="Role" />
                     <input className="rounded-lg border border-border bg-background px-3 py-2 text-sm" value={item.company} onChange={(e) => setDraft((prev) => ({ ...prev, experience: prev.experience.map((x, i) => (i === idx ? { ...x, company: e.target.value } : x)) }))} placeholder="Company" />
@@ -329,7 +329,7 @@ const Admin = () => {
             </div>
             <div className="mt-5 space-y-4">
               {draft.education.map((item, idx) => (
-                <div key={`${item.degree}-${idx}`} className="rounded-lg border border-border p-4">
+                <div key={`education-${idx}`} className="rounded-lg border border-border p-4">
                   <div className="grid gap-3 sm:grid-cols-2">
                     <input className="rounded-lg border border-border bg-background px-3 py-2 text-sm" value={item.degree} onChange={(e) => setDraft((prev) => ({ ...prev, education: prev.education.map((x, i) => (i === idx ? { ...x, degree: e.target.value } : x)) }))} placeholder="Degree" />
                     <input className="rounded-lg border border-border bg-background px-3 py-2 text-sm" value={item.school} onChange={(e) => setDraft((prev) => ({ ...prev, education: prev.education.map((x, i) => (i === idx ? { ...x, school: e.target.value } : x)) }))} placeholder="School" />
