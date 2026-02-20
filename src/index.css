@@ -8,35 +8,35 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    --background: 38 28% 96%;
-    --foreground: 20 23% 17%;
+    --background: 210 20% 97%;
+    --foreground: 222 20% 14%;
 
-    --card: 36 33% 98%;
-    --card-foreground: 20 23% 17%;
+    --card: 210 20% 99%;
+    --card-foreground: 222 20% 14%;
 
-    --popover: 36 33% 98%;
-    --popover-foreground: 20 23% 17%;
+    --popover: 210 20% 99%;
+    --popover-foreground: 222 20% 14%;
 
-    --primary: 15 28% 24%;
-    --primary-foreground: 40 35% 97%;
+    --primary: 222 20% 16%;
+    --primary-foreground: 210 30% 98%;
 
-    --secondary: 38 22% 91%;
-    --secondary-foreground: 20 23% 17%;
+    --secondary: 215 22% 93%;
+    --secondary-foreground: 222 20% 14%;
 
-    --muted: 36 17% 90%;
-    --muted-foreground: 20 10% 35%;
+    --muted: 215 18% 90%;
+    --muted-foreground: 220 10% 38%;
 
-    --accent: 34 29% 86%;
-    --accent-foreground: 20 23% 17%;
+    --accent: 210 16% 88%;
+    --accent-foreground: 222 20% 14%;
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 40% 98%;
 
-    --border: 30 22% 81%;
-    --input: 30 22% 81%;
-    --ring: 20 23% 17%;
+    --border: 216 18% 84%;
+    --input: 216 18% 84%;
+    --ring: 222 20% 16%;
 
-    --radius: 0.35rem;
+    --radius: 0.5rem;
 
     --sidebar-background: 0 0% 98%;
 
@@ -105,41 +105,15 @@ All colors MUST be HSL.
 
   body {
     @apply bg-background text-foreground antialiased;
-    font-family: "Source Sans 3", "Segoe UI", sans-serif;
-    background-image:
-      linear-gradient(to right, hsl(30 22% 90% / 0.45) 1px, transparent 1px),
-      linear-gradient(to bottom, hsl(30 22% 90% / 0.45) 1px, transparent 1px);
-    background-size: 44px 44px;
-  }
-
-  h1,
-  h2,
-  h3,
-  h4 {
-    font-family: "Cormorant Garamond", Georgia, serif;
-    letter-spacing: -0.015em;
+    font-family: "Inter", "Segoe UI", system-ui, sans-serif;
+    background:
+      radial-gradient(circle at 12% 8%, hsl(210 20% 92%), transparent 30%),
+      radial-gradient(circle at 90% 12%, hsl(216 22% 93%), transparent 28%),
+      hsl(var(--background));
   }
 
   ::selection {
-    background: hsl(28 36% 80%);
-    color: hsl(20 23% 17%);
-  }
-}
-
-@layer components {
-  .section-shell {
-    @apply mx-auto max-w-6xl;
-  }
-
-  .eyebrow {
-    @apply text-xs uppercase tracking-[0.22em] text-muted-foreground;
-  }
-
-  .section-title {
-    @apply mt-2 text-4xl font-semibold leading-tight text-foreground sm:text-5xl;
-  }
-
-  .paper-card {
-    @apply border border-border bg-card shadow-[0_10px_35px_hsl(20_23%_17%_/_0.08)];
+    background: hsl(220 18% 84%);
+    color: hsl(222 20% 14%);
   }
 }

@@ -31,9 +31,9 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 border-b border-border/90 bg-background/90 backdrop-blur-md">
-      <div className="section-shell flex items-center justify-between px-6 py-4">
-        <Link to="/" className="text-2xl font-semibold text-foreground">
+    <nav className="fixed top-0 left-0 right-0 z-50 border-b border-border bg-background/85 backdrop-blur-md">
+      <div className="mx-auto flex max-w-5xl items-center justify-between px-6 py-4">
+        <Link to="/" className="text-lg font-semibold tracking-tight text-foreground">
           {personalInfo.name}
         </Link>
 
@@ -41,13 +41,13 @@ const Navbar = () => {
           {navItems.map((item) =>
             item.href.startsWith("/") && !item.href.startsWith("/#") ? (
               <li key={item.label}>
-                <Link to={item.href} className="eyebrow tracking-[0.18em] text-muted-foreground transition-colors hover:text-foreground">
+                <Link to={item.href} className="text-sm text-muted-foreground transition-colors hover:text-foreground">
                   {item.label}
                 </Link>
               </li>
             ) : (
               <li key={item.label}>
-                <button onClick={() => handleClick(item.href)} className="eyebrow tracking-[0.18em] text-muted-foreground transition-colors hover:text-foreground">
+                <button onClick={() => handleClick(item.href)} className="text-sm text-muted-foreground transition-colors hover:text-foreground">
                   {item.label}
                 </button>
               </li>
@@ -61,18 +61,18 @@ const Navbar = () => {
       </div>
 
       {open && (
-        <div className="md:hidden border-t border-border bg-background px-6 pb-4">
+        <div className="border-t border-border bg-background px-6 pb-4 md:hidden">
           <ul className="flex flex-col gap-3">
             {navItems.map((item) =>
               item.href.startsWith("/") && !item.href.startsWith("/#") ? (
                 <li key={item.label}>
-                  <Link to={item.href} onClick={() => setOpen(false)} className="eyebrow text-muted-foreground transition-colors hover:text-foreground">
+                  <Link to={item.href} onClick={() => setOpen(false)} className="text-sm text-muted-foreground transition-colors hover:text-foreground">
                     {item.label}
                   </Link>
                 </li>
               ) : (
                 <li key={item.label}>
-                  <button onClick={() => handleClick(item.href)} className="eyebrow text-muted-foreground transition-colors hover:text-foreground">
+                  <button onClick={() => handleClick(item.href)} className="text-sm text-muted-foreground transition-colors hover:text-foreground">
                     {item.label}
                   </button>
                 </li>

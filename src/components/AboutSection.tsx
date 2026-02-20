@@ -8,37 +8,36 @@ const AboutSection = () => {
   } = usePortfolio();
 
   return (
-    <section id="about" className="px-6 py-20">
-      <div className="section-shell">
+    <section id="about" className="px-6 py-24">
+      <div className="mx-auto max-w-5xl">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.5 }}
         >
-          <p className="eyebrow">Profile</p>
-          <h2 className="section-title">About</h2>
-          <div className="mt-10 grid gap-10 lg:grid-cols-[240px_1fr]">
-            <div className="paper-card flex flex-col items-center gap-4 p-6">
+          <h2 className="text-3xl font-bold tracking-tight text-foreground">About Me</h2>
+          <div className="mt-10 grid gap-10 md:grid-cols-[200px_1fr]">
+            <div className="flex flex-col items-center gap-3 rounded-xl border border-border bg-secondary/35 p-5">
               <img
                 src={personalInfo.avatarUrl}
                 alt={personalInfo.name}
-                className="h-40 w-40 rounded-full border border-border object-cover bg-secondary"
+                className="h-40 w-40 rounded-full border-2 border-border object-cover bg-secondary"
               />
-              <span className="inline-flex items-center gap-1 text-sm font-semibold uppercase tracking-wider text-muted-foreground">
+              <span className="inline-flex items-center gap-1 text-sm text-muted-foreground">
                 <MapPin size={14} /> {personalInfo.location}
               </span>
             </div>
 
-            <div className="paper-card p-8">
-              <p className="text-lg leading-relaxed text-muted-foreground">{personalInfo.bio}</p>
-              <div className="mt-10 border-t border-border pt-6">
-                <h3 className="eyebrow">Tech Stack</h3>
-                <div className="mt-4 flex flex-wrap gap-2">
+            <div>
+              <p className="text-base leading-relaxed text-muted-foreground">{personalInfo.bio}</p>
+              <div className="mt-8">
+                <h3 className="mb-3 text-sm font-semibold uppercase tracking-widest text-muted-foreground">Tech Stack</h3>
+                <div className="flex flex-wrap gap-2">
                   {skills.map((skill) => (
                     <span
                       key={skill}
-                      className="border border-border bg-background px-3 py-1 text-xs font-semibold uppercase tracking-wide text-secondary-foreground"
+                      className="rounded-full border border-border bg-secondary/50 px-3 py-1 text-xs font-medium text-secondary-foreground"
                     >
                       {skill}
                     </span>
