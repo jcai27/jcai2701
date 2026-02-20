@@ -42,7 +42,6 @@ const Admin = () => {
   const { toast } = useToast();
   const [draft, setDraft] = useState<PortfolioData>(data);
   const [newSkill, setNewSkill] = useState("");
-  const [newInterest, setNewInterest] = useState("");
   const [isSaving, setIsSaving] = useState(false);
   const [draggingProjectIndex, setDraggingProjectIndex] = useState<number | null>(null);
   const [draggingExperienceIndex, setDraggingExperienceIndex] = useState<number | null>(null);
@@ -192,6 +191,32 @@ const Admin = () => {
     }));
   };
 
+  const handleBeyondWorkImageUpload = async (sectionIdx: number, imageIdx: number, file: File | null) => {
+    if (!file) return;
+    let assetUrl = await fileToDataUrl(file);
+    if (isServerConfigured) {
+      try {
+        const uploadedUrl = await uploadAsset(file, "hobbies");
+        if (uploadedUrl) assetUrl = uploadedUrl;
+      } catch {
+        toast({
+          title: "Hobby image upload warning",
+          description: "Storage upload failed, using browser-local copy for now.",
+        });
+      }
+    }
+
+    setDraft((prev) => ({
+      ...prev,
+      beyondWorkSections: prev.beyondWorkSections.map((section, i) => {
+        if (i !== sectionIdx) return section;
+        const nextImages = [...(section.imageUrls || ["", ""])];
+        nextImages[imageIdx] = assetUrl;
+        return { ...section, imageUrls: nextImages.slice(0, 2) };
+      }),
+    }));
+  };
+
   const reorderProjects = (toIndex: number) => {
     setDraft((prev) => {
       if (draggingProjectIndex === null || draggingProjectIndex === toIndex) return prev;
@@ -305,40 +330,66 @@ const Admin = () => {
 
           <section className="rounded-xl border border-border bg-card p-6">
             <h2 className="text-xl font-semibold text-card-foreground">Beyond Work</h2>
-            <div className="mt-4 flex flex-wrap gap-2">
-              {draft.personalInterests.map((interest) => (
-                <button
-                  key={interest}
-                  onClick={() =>
-                    setDraft((prev) => ({
-                      ...prev,
-                      personalInterests: prev.personalInterests.filter((x) => x !== interest),
-                    }))
-                  }
-                  className="rounded-full border border-border bg-secondary px-3 py-1 text-xs font-medium text-secondary-foreground"
-                >
-                  {interest} x
-                </button>
+            <p className="mt-2 text-sm text-muted-foreground">
+              This powers the standalone Beyond Work page. Keep exactly 3 sections.
+            </p>
+            <div className="mt-5 space-y-4">
+              {draft.beyondWorkSections.map((section, idx) => (
+                <div key={`beyond-work-${idx}`} className="rounded-lg border border-border p-4">
+                  <p className="mb-3 text-xs font-medium uppercase tracking-wider text-muted-foreground">Section {idx + 1}</p>
+                  <div className="grid gap-3">
+                    <input
+                      className="rounded-lg border border-border bg-background px-3 py-2 text-sm"
+                      value={section.title}
+                      onChange={(e) =>
+                        setDraft((prev) => ({
+                          ...prev,
+                          beyondWorkSections: prev.beyondWorkSections.map((s, i) => (i === idx ? { ...s, title: e.target.value } : s)),
+                        }))
+                      }
+                      placeholder="Hobby title"
+                    />
+                    <textarea
+                      className="rounded-lg border border-border bg-background px-3 py-2 text-sm"
+                      rows={4}
+                      value={section.description}
+                      onChange={(e) =>
+                        setDraft((prev) => ({
+                          ...prev,
+                          beyondWorkSections: prev.beyondWorkSections.map((s, i) => (i === idx ? { ...s, description: e.target.value } : s)),
+                        }))
+                      }
+                      placeholder="Paragraph about this hobby"
+                    />
+                    {[0, 1].map((imageIdx) => (
+                      <div key={imageIdx} className="grid gap-2 sm:grid-cols-2">
+                        <input
+                          className="rounded-lg border border-border bg-background px-3 py-2 text-sm"
+                          value={section.imageUrls?.[imageIdx] || ""}
+                          onChange={(e) =>
+                            setDraft((prev) => ({
+                              ...prev,
+                              beyondWorkSections: prev.beyondWorkSections.map((s, i) => {
+                                if (i !== idx) return s;
+                                const images = [...(s.imageUrls || ["", ""])];
+                                images[imageIdx] = e.target.value;
+                                return { ...s, imageUrls: images.slice(0, 2) };
+                              }),
+                            }))
+                          }
+                          placeholder={`Image ${imageIdx + 1} URL (optional)`}
+                        />
+                        <input
+                          type="file"
+                          accept="image/*"
+                          className="text-sm text-muted-foreground"
+                          onChange={(e) => void handleBeyondWorkImageUpload(idx, imageIdx, e.target.files?.[0] || null)}
+                        />
+                      </div>
+                    ))}
+                  </div>
+                </div>
               ))}
-            </div>
-            <div className="mt-4 flex gap-2">
-              <input
-                className="w-full rounded-lg border border-border bg-background px-3 py-2 text-sm"
-                value={newInterest}
-                onChange={(e) => setNewInterest(e.target.value)}
-                placeholder="Add an interest (e.g. Tennis, Chess, Swimming)"
-              />
-              <button
-                onClick={() => {
-                  const value = newInterest.trim();
-                  if (!value) return;
-                  setDraft((prev) => ({ ...prev, personalInterests: [...prev.personalInterests, value] }));
-                  setNewInterest("");
-                }}
-                className="rounded-full bg-foreground px-4 py-2 text-sm font-medium text-background"
-              >
-                Add
-              </button>
             </div>
           </section>
 

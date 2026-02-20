@@ -39,9 +39,15 @@ export interface ResumeAsset {
   dataUrl: string;
 }
 
+export interface BeyondWorkSection {
+  title: string;
+  description: string;
+  imageUrls: string[];
+}
+
 export interface PortfolioData {
   personalInfo: PersonalInfo;
-  personalInterests: string[];
+  beyondWorkSections: BeyondWorkSection[];
   skills: string[];
   projects: Project[];
   experience: Experience[];
@@ -64,10 +70,22 @@ export const defaultPortfolioData: PortfolioData = {
     bio: "I'm a passionate full-stack developer with 5+ years of experience building web applications. I love working with modern technologies and creating clean, user-friendly interfaces. When I'm not coding, you'll find me hiking, reading, or contributing to open-source projects.",
     avatarUrl: "/placeholder.svg",
   },
-  personalInterests: [
-    "Tennis",
-    "Chess",
-    "Swimming",
+  beyondWorkSections: [
+    {
+      title: "Tennis",
+      description: "I play tennis to stay sharp and competitive. I enjoy singles matches and the focus it takes to adapt point by point.",
+      imageUrls: ["", ""],
+    },
+    {
+      title: "Chess",
+      description: "Chess helps me think in systems, plan ahead, and stay calm under pressure. I especially enjoy studying positional games.",
+      imageUrls: ["", ""],
+    },
+    {
+      title: "Swimming",
+      description: "Swimming is my reset routine. It keeps me disciplined, consistent, and gives me space to think through ideas.",
+      imageUrls: ["", ""],
+    },
   ],
   skills: [
     "React",

@@ -5,6 +5,7 @@ import { PortfolioProvider } from "@/context/PortfolioContext";
 
 const Index = lazy(() => import("./pages/Index"));
 const Resume = lazy(() => import("./pages/Resume"));
+const BeyondWork = lazy(() => import("./pages/BeyondWork"));
 const Admin = lazy(() => import("./pages/Admin"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 
@@ -16,6 +17,7 @@ const App = () => (
         <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/resume" element={<Resume />} />
+          <Route path="/beyond-work" element={<BeyondWork />} />
           <Route path="/admin" element={<Admin />} />
           <Route path="*" element={<NotFound />} />
         </Routes>

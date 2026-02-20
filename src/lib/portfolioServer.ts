@@ -39,7 +39,7 @@ function safeFileName(name: string): string {
   return name.replace(/[^a-zA-Z0-9._-]/g, "-").toLowerCase();
 }
 
-export async function uploadAsset(file: File, folder: "resumes" | "avatars" | "logos"): Promise<string | null> {
+export async function uploadAsset(file: File, folder: "resumes" | "avatars" | "logos" | "hobbies"): Promise<string | null> {
   if (!isSupabaseConfigured || !supabase) return null;
 
   const path = `${folder}/${Date.now()}-${safeFileName(file.name)}`;
