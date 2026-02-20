@@ -42,6 +42,7 @@ const Admin = () => {
   const { toast } = useToast();
   const [draft, setDraft] = useState<PortfolioData>(data);
   const [newSkill, setNewSkill] = useState("");
+  const [newInterest, setNewInterest] = useState("");
   const [isSaving, setIsSaving] = useState(false);
   const [draggingProjectIndex, setDraggingProjectIndex] = useState<number | null>(null);
   const [draggingExperienceIndex, setDraggingExperienceIndex] = useState<number | null>(null);
@@ -298,6 +299,45 @@ const Admin = () => {
                 className="rounded-full border border-border px-4 py-2 text-sm font-medium text-foreground hover:bg-secondary"
               >
                 Use Default Resume
+              </button>
+            </div>
+          </section>
+
+          <section className="rounded-xl border border-border bg-card p-6">
+            <h2 className="text-xl font-semibold text-card-foreground">Beyond Work</h2>
+            <div className="mt-4 flex flex-wrap gap-2">
+              {draft.personalInterests.map((interest) => (
+                <button
+                  key={interest}
+                  onClick={() =>
+                    setDraft((prev) => ({
+                      ...prev,
+                      personalInterests: prev.personalInterests.filter((x) => x !== interest),
+                    }))
+                  }
+                  className="rounded-full border border-border bg-secondary px-3 py-1 text-xs font-medium text-secondary-foreground"
+                >
+                  {interest} x
+                </button>
+              ))}
+            </div>
+            <div className="mt-4 flex gap-2">
+              <input
+                className="w-full rounded-lg border border-border bg-background px-3 py-2 text-sm"
+                value={newInterest}
+                onChange={(e) => setNewInterest(e.target.value)}
+                placeholder="Add an interest (e.g. Tennis, Chess, Swimming)"
+              />
+              <button
+                onClick={() => {
+                  const value = newInterest.trim();
+                  if (!value) return;
+                  setDraft((prev) => ({ ...prev, personalInterests: [...prev.personalInterests, value] }));
+                  setNewInterest("");
+                }}
+                className="rounded-full bg-foreground px-4 py-2 text-sm font-medium text-background"
+              >
+                Add
               </button>
             </div>
           </section>

@@ -41,6 +41,7 @@ export interface ResumeAsset {
 
 export interface PortfolioData {
   personalInfo: PersonalInfo;
+  personalInterests: string[];
   skills: string[];
   projects: Project[];
   experience: Experience[];
@@ -63,6 +64,11 @@ export const defaultPortfolioData: PortfolioData = {
     bio: "I'm a passionate full-stack developer with 5+ years of experience building web applications. I love working with modern technologies and creating clean, user-friendly interfaces. When I'm not coding, you'll find me hiking, reading, or contributing to open-source projects.",
     avatarUrl: "/placeholder.svg",
   },
+  personalInterests: [
+    "Tennis",
+    "Chess",
+    "Swimming",
+  ],
   skills: [
     "React",
     "TypeScript",
