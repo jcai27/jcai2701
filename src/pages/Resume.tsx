@@ -4,6 +4,14 @@ import { Briefcase, GraduationCap, Download } from "lucide-react";
 import { motion } from "framer-motion";
 import { usePortfolio } from "@/context/PortfolioContext";
 
+const initials = (value: string) =>
+  value
+    .split(" ")
+    .map((part) => part[0])
+    .join("")
+    .slice(0, 2)
+    .toUpperCase();
+
 const Resume = () => {
   const {
     data: { personalInfo, skills, experience, education },
@@ -50,14 +58,26 @@ const Resume = () => {
               <h2 className="flex items-center gap-2 text-sm font-semibold uppercase tracking-widest text-muted-foreground">
                 <Briefcase size={16} /> Experience
               </h2>
-              <div className="mt-6 space-y-8 border-l-2 border-border pl-6">
+              <div className="mt-6 space-y-4">
                 {experience.map((exp, idx) => (
-                  <div key={`${exp.role}-${exp.company}-${idx}`} className="relative">
-                    <div className="absolute -left-[31px] top-1 h-3 w-3 rounded-full border-2 border-foreground bg-background" />
-                    <p className="text-xs font-medium text-muted-foreground">{exp.period}</p>
-                    <h3 className="mt-1 text-base font-semibold text-foreground">{exp.role}</h3>
-                    <p className="text-sm text-muted-foreground">{exp.company}</p>
-                    <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{exp.description}</p>
+                  <div key={`${exp.role}-${exp.company}-${idx}`} className="rounded-lg border border-border bg-background/70 p-4">
+                    <div className="flex gap-4">
+                      <div className="h-12 w-12 shrink-0 overflow-hidden rounded-md border border-border bg-secondary/50">
+                        {exp.logoUrl ? (
+                          <img src={exp.logoUrl} alt={`${exp.company} logo`} className="h-full w-full object-contain p-1" />
+                        ) : (
+                          <div className="flex h-full w-full items-center justify-center text-xs font-semibold text-muted-foreground">
+                            {initials(exp.company)}
+                          </div>
+                        )}
+                      </div>
+                      <div className="min-w-0">
+                        <p className="text-xs font-medium text-muted-foreground">{exp.period}</p>
+                        <h3 className="mt-1 text-base font-semibold text-foreground">{exp.role}</h3>
+                        <p className="text-sm text-muted-foreground">{exp.company}</p>
+                        <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{exp.description}</p>
+                      </div>
+                    </div>
                   </div>
                 ))}
               </div>
@@ -67,14 +87,26 @@ const Resume = () => {
               <h2 className="flex items-center gap-2 text-sm font-semibold uppercase tracking-widest text-muted-foreground">
                 <GraduationCap size={16} /> Education
               </h2>
-              <div className="mt-6 space-y-8 border-l-2 border-border pl-6">
+              <div className="mt-6 space-y-4">
                 {education.map((edu, idx) => (
-                  <div key={`${edu.degree}-${edu.school}-${idx}`} className="relative">
-                    <div className="absolute -left-[31px] top-1 h-3 w-3 rounded-full border-2 border-foreground bg-background" />
-                    <p className="text-xs font-medium text-muted-foreground">{edu.period}</p>
-                    <h3 className="mt-1 text-base font-semibold text-foreground">{edu.degree}</h3>
-                    <p className="text-sm text-muted-foreground">{edu.school}</p>
-                    <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{edu.description}</p>
+                  <div key={`${edu.degree}-${edu.school}-${idx}`} className="rounded-lg border border-border bg-background/70 p-4">
+                    <div className="flex gap-4">
+                      <div className="h-12 w-12 shrink-0 overflow-hidden rounded-md border border-border bg-secondary/50">
+                        {edu.logoUrl ? (
+                          <img src={edu.logoUrl} alt={`${edu.school} logo`} className="h-full w-full object-contain p-1" />
+                        ) : (
+                          <div className="flex h-full w-full items-center justify-center text-xs font-semibold text-muted-foreground">
+                            {initials(edu.school)}
+                          </div>
+                        )}
+                      </div>
+                      <div className="min-w-0">
+                        <p className="text-xs font-medium text-muted-foreground">{edu.period}</p>
+                        <h3 className="mt-1 text-base font-semibold text-foreground">{edu.degree}</h3>
+                        <p className="text-sm text-muted-foreground">{edu.school}</p>
+                        <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{edu.description}</p>
+                      </div>
+                    </div>
                   </div>
                 ))}
               </div>

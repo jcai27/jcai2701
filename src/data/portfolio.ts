@@ -23,6 +23,7 @@ export interface Experience {
   company: string;
   period: string;
   description: string;
+  logoUrl?: string;
 }
 
 export interface Education {
@@ -30,6 +31,7 @@ export interface Education {
   school: string;
   period: string;
   description: string;
+  logoUrl?: string;
 }
 
 export interface ResumeAsset {
@@ -111,18 +113,21 @@ export const defaultPortfolioData: PortfolioData = {
       company: "TechCorp Inc.",
       period: "2022 - Present",
       description: "Lead frontend architecture for a SaaS platform serving 50k+ users. Built design system, improved performance by 40%, and mentored junior developers.",
+      logoUrl: "",
     },
     {
       role: "Full-Stack Developer",
       company: "StartupXYZ",
       period: "2020 - 2022",
       description: "Developed and maintained multiple client-facing applications using React and Node.js. Implemented CI/CD pipelines and automated testing.",
+      logoUrl: "",
     },
     {
       role: "Junior Developer",
       company: "WebAgency Co.",
       period: "2018 - 2020",
       description: "Built responsive websites and web applications for clients across various industries. Collaborated with designers to implement pixel-perfect UIs.",
+      logoUrl: "",
     },
   ],
   education: [
@@ -131,6 +136,7 @@ export const defaultPortfolioData: PortfolioData = {
       school: "University of California, Berkeley",
       period: "2014 - 2018",
       description: "Graduated with honors. Focused on software engineering and human-computer interaction.",
+      logoUrl: "",
     },
   ],
   resume: null,

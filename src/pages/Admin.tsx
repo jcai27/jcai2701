@@ -19,6 +19,7 @@ const emptyExperience: Experience = {
   company: "",
   period: "",
   description: "",
+  logoUrl: "",
 };
 
 const emptyEducation: Education = {
@@ -26,6 +27,7 @@ const emptyEducation: Education = {
   school: "",
   period: "",
   description: "",
+  logoUrl: "",
 };
 
 const moveItem = <T,>(items: T[], from: number, to: number) => {
@@ -152,6 +154,41 @@ const Admin = () => {
       }
     }
     setPersonalField("avatarUrl", assetUrl);
+  };
+
+  const uploadLogo = async (file: File | null) => {
+    if (!file) return null;
+    let assetUrl = await fileToDataUrl(file);
+    if (isServerConfigured) {
+      try {
+        const uploadedUrl = await uploadAsset(file, "logos");
+        if (uploadedUrl) assetUrl = uploadedUrl;
+      } catch {
+        toast({
+          title: "Logo upload warning",
+          description: "Storage upload failed, using browser-local copy for now.",
+        });
+      }
+    }
+    return assetUrl;
+  };
+
+  const handleExperienceLogoUpload = async (idx: number, file: File | null) => {
+    const assetUrl = await uploadLogo(file);
+    if (!assetUrl) return;
+    setDraft((prev) => ({
+      ...prev,
+      experience: prev.experience.map((x, i) => (i === idx ? { ...x, logoUrl: assetUrl } : x)),
+    }));
+  };
+
+  const handleEducationLogoUpload = async (idx: number, file: File | null) => {
+    const assetUrl = await uploadLogo(file);
+    if (!assetUrl) return;
+    setDraft((prev) => ({
+      ...prev,
+      education: prev.education.map((x, i) => (i === idx ? { ...x, logoUrl: assetUrl } : x)),
+    }));
   };
 
   const reorderProjects = (toIndex: number) => {
@@ -364,6 +401,8 @@ const Admin = () => {
                   <div className="grid gap-3 sm:grid-cols-2">
                     <input className="rounded-lg border border-border bg-background px-3 py-2 text-sm" value={item.role} onChange={(e) => setDraft((prev) => ({ ...prev, experience: prev.experience.map((x, i) => (i === idx ? { ...x, role: e.target.value } : x)) }))} placeholder="Role" />
                     <input className="rounded-lg border border-border bg-background px-3 py-2 text-sm" value={item.company} onChange={(e) => setDraft((prev) => ({ ...prev, experience: prev.experience.map((x, i) => (i === idx ? { ...x, company: e.target.value } : x)) }))} placeholder="Company" />
+                    <input className="rounded-lg border border-border bg-background px-3 py-2 text-sm sm:col-span-2" value={item.logoUrl || ""} onChange={(e) => setDraft((prev) => ({ ...prev, experience: prev.experience.map((x, i) => (i === idx ? { ...x, logoUrl: e.target.value } : x)) }))} placeholder="Company logo URL (optional)" />
+                    <input type="file" accept="image/*" className="text-sm text-muted-foreground sm:col-span-2" onChange={(e) => void handleExperienceLogoUpload(idx, e.target.files?.[0] || null)} />
                     <input className="rounded-lg border border-border bg-background px-3 py-2 text-sm sm:col-span-2" value={item.period} onChange={(e) => setDraft((prev) => ({ ...prev, experience: prev.experience.map((x, i) => (i === idx ? { ...x, period: e.target.value } : x)) }))} placeholder="Period (e.g. 2022 - Present)" />
                     <textarea className="rounded-lg border border-border bg-background px-3 py-2 text-sm sm:col-span-2" rows={3} value={item.description} onChange={(e) => setDraft((prev) => ({ ...prev, experience: prev.experience.map((x, i) => (i === idx ? { ...x, description: e.target.value } : x)) }))} placeholder="Description" />
                   </div>
@@ -403,6 +442,8 @@ const Admin = () => {
                   <div className="grid gap-3 sm:grid-cols-2">
                     <input className="rounded-lg border border-border bg-background px-3 py-2 text-sm" value={item.degree} onChange={(e) => setDraft((prev) => ({ ...prev, education: prev.education.map((x, i) => (i === idx ? { ...x, degree: e.target.value } : x)) }))} placeholder="Degree" />
                     <input className="rounded-lg border border-border bg-background px-3 py-2 text-sm" value={item.school} onChange={(e) => setDraft((prev) => ({ ...prev, education: prev.education.map((x, i) => (i === idx ? { ...x, school: e.target.value } : x)) }))} placeholder="School" />
+                    <input className="rounded-lg border border-border bg-background px-3 py-2 text-sm sm:col-span-2" value={item.logoUrl || ""} onChange={(e) => setDraft((prev) => ({ ...prev, education: prev.education.map((x, i) => (i === idx ? { ...x, logoUrl: e.target.value } : x)) }))} placeholder="University logo URL (optional)" />
+                    <input type="file" accept="image/*" className="text-sm text-muted-foreground sm:col-span-2" onChange={(e) => void handleEducationLogoUpload(idx, e.target.files?.[0] || null)} />
                     <input className="rounded-lg border border-border bg-background px-3 py-2 text-sm sm:col-span-2" value={item.period} onChange={(e) => setDraft((prev) => ({ ...prev, education: prev.education.map((x, i) => (i === idx ? { ...x, period: e.target.value } : x)) }))} placeholder="Period (e.g. 2018 - 2022)" />
                     <textarea className="rounded-lg border border-border bg-background px-3 py-2 text-sm sm:col-span-2" rows={3} value={item.description} onChange={(e) => setDraft((prev) => ({ ...prev, education: prev.education.map((x, i) => (i === idx ? { ...x, description: e.target.value } : x)) }))} placeholder="Description" />
                   </div>
