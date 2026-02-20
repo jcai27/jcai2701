@@ -37,13 +37,10 @@ const BeyondWork = () => {
               className="mx-auto max-w-6xl"
             >
               <div className={`grid items-start gap-10 lg:grid-cols-2 ${idx % 2 === 1 ? "lg:[&>*:first-child]:order-2 lg:[&>*:last-child]:order-1" : ""}`}>
-                <div className="relative">
-                  <div className={`rounded-2xl border border-border bg-card/85 p-7 shadow-[0_14px_34px_hsl(222_20%_14%_/_0.09)] ${idx % 2 === 0 ? "lg:-rotate-1" : "lg:rotate-1"}`}>
-                    <p className="section-label">Hobby {idx + 1}</p>
-                    <h2 className="mt-2 text-3xl font-bold tracking-tight text-foreground sm:text-4xl">{item.title}</h2>
-                    <p className="mt-4 text-base leading-relaxed text-muted-foreground">{item.description}</p>
-                  </div>
-                  <div className={`absolute -top-3 h-8 w-24 rounded-md bg-accent/70 ${idx % 2 === 0 ? "right-8 rotate-6" : "left-8 -rotate-6"}`} />
+                <div>
+                  <p className="section-label">Hobby {idx + 1}</p>
+                  <h2 className="mt-2 text-3xl font-bold tracking-tight text-foreground sm:text-4xl">{item.title}</h2>
+                  <p className="mt-4 max-w-2xl text-base leading-relaxed text-muted-foreground">{item.description}</p>
                 </div>
 
                 <div className="grid gap-4 md:relative md:min-h-[420px] md:block">
@@ -51,8 +48,8 @@ const BeyondWork = () => {
                     const url = item.imageUrls?.[imageIndex];
                     const isFirst = imageIndex === 0;
                     const cardPosition = isFirst
-                      ? "md:left-0 md:top-0 md:w-[76%] md:rotate-[-2deg]"
-                      : "md:right-0 md:bottom-0 md:w-[70%] md:rotate-[3deg]";
+                      ? "md:left-0 md:top-0 md:w-[74%] md:rotate-[-1.5deg]"
+                      : "md:right-0 md:bottom-2 md:w-[66%] md:rotate-[1.5deg]";
                     return (
                       <div
                         key={imageIndex}
@@ -66,9 +63,6 @@ const BeyondWork = () => {
                               Add image {imageIndex + 1} in admin
                             </div>
                           )}
-                        </div>
-                        <div className="border-t border-border bg-card/90 px-3 py-2 text-xs text-muted-foreground">
-                          {item.title} · {imageIndex + 1}
                         </div>
                       </div>
                     );
