@@ -4,7 +4,7 @@ import { usePortfolio } from "@/context/PortfolioContext";
 
 const HeroSection = () => {
   const {
-    data: { personalInfo, projects, experience },
+    data: { personalInfo },
     resumeUrl,
   } = usePortfolio();
 
@@ -29,20 +29,6 @@ const HeroSection = () => {
         <p className="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-muted-foreground">
           {personalInfo.tagline}
         </p>
-        <div className="mt-8 grid grid-cols-1 gap-3 sm:grid-cols-3">
-          <div className="soft-card px-4 py-3">
-            <p className="text-2xl font-semibold text-foreground">{projects.length}+</p>
-            <p className="text-xs uppercase tracking-wide text-muted-foreground">Projects Delivered</p>
-          </div>
-          <div className="soft-card px-4 py-3">
-            <p className="text-2xl font-semibold text-foreground">{experience.length}+</p>
-            <p className="text-xs uppercase tracking-wide text-muted-foreground">Experience Roles</p>
-          </div>
-          <div className="soft-card px-4 py-3">
-            <p className="text-2xl font-semibold text-foreground">100%</p>
-            <p className="text-xs uppercase tracking-wide text-muted-foreground">Product Focused</p>
-          </div>
-        </div>
         <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
           <button
             onClick={() => scrollTo("projects")}
