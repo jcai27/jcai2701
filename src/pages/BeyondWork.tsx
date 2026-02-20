@@ -14,12 +14,12 @@ const BeyondWork = () => {
       <main className="pt-20">
         <section className="px-6 py-16">
           <div className="mx-auto max-w-5xl">
-            <p className="section-label">Beyond Work</p>
+            <p className="section-label">About Me</p>
             <h1 className="mt-2 text-4xl font-bold tracking-tight text-foreground sm:text-5xl">
-              Life Outside Code
+              About Me
             </h1>
             <p className="mt-3 max-w-3xl text-lg text-muted-foreground">
-              A few things {personalInfo.name} enjoys beyond software engineering.
+              A few things I enjoy outside of coding!
             </p>
           </div>
         </section>
