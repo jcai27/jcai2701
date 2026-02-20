@@ -329,9 +329,9 @@ const Admin = () => {
           </section>
 
           <section className="rounded-xl border border-border bg-card p-6">
-            <h2 className="text-xl font-semibold text-card-foreground">Beyond Work</h2>
+            <h2 className="text-xl font-semibold text-card-foreground">About Me Page</h2>
             <p className="mt-2 text-sm text-muted-foreground">
-              This powers the standalone Beyond Work page. Keep exactly 3 sections.
+              This powers the standalone About Me page. Keep exactly 3 sections.
             </p>
             <div className="mt-5 space-y-4">
               {draft.beyondWorkSections.map((section, idx) => (
