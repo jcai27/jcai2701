@@ -64,7 +64,7 @@ const Resume = () => {
                     <div className="flex gap-4">
                       <div className="h-12 w-12 shrink-0 overflow-hidden rounded-md border border-border bg-secondary/50">
                         {exp.logoUrl ? (
-                          <img src={exp.logoUrl} alt={`${exp.company} logo`} className="h-full w-full object-contain p-1" />
+                          <img src={exp.logoUrl} alt={`${exp.company} logo`} className="h-full w-full object-cover" />
                         ) : (
                           <div className="flex h-full w-full items-center justify-center text-xs font-semibold text-muted-foreground">
                             {initials(exp.company)}
@@ -93,7 +93,7 @@ const Resume = () => {
                     <div className="flex gap-4">
                       <div className="h-12 w-12 shrink-0 overflow-hidden rounded-md border border-border bg-secondary/50">
                         {edu.logoUrl ? (
-                          <img src={edu.logoUrl} alt={`${edu.school} logo`} className="h-full w-full object-contain p-1" />
+                          <img src={edu.logoUrl} alt={`${edu.school} logo`} className="h-full w-full object-cover" />
                         ) : (
                           <div className="flex h-full w-full items-center justify-center text-xs font-semibold text-muted-foreground">
                             {initials(edu.school)}
