@@ -8,7 +8,7 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    --background: 210 20% 97%;
+    --background: 210 22% 97%;
     --foreground: 222 20% 14%;
 
     --card: 210 20% 99%;
@@ -17,24 +17,24 @@ All colors MUST be HSL.
     --popover: 210 20% 99%;
     --popover-foreground: 222 20% 14%;
 
-    --primary: 222 20% 16%;
+    --primary: 221 28% 24%;
     --primary-foreground: 210 30% 98%;
 
-    --secondary: 215 22% 93%;
+    --secondary: 216 24% 93%;
     --secondary-foreground: 222 20% 14%;
 
     --muted: 215 18% 90%;
     --muted-foreground: 220 10% 38%;
 
-    --accent: 210 16% 88%;
+    --accent: 219 20% 86%;
     --accent-foreground: 222 20% 14%;
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 40% 98%;
 
-    --border: 216 18% 84%;
-    --input: 216 18% 84%;
-    --ring: 222 20% 16%;
+    --border: 217 18% 83%;
+    --input: 217 18% 83%;
+    --ring: 221 28% 24%;
 
     --radius: 0.5rem;
 
@@ -107,13 +107,23 @@ All colors MUST be HSL.
     @apply bg-background text-foreground antialiased;
     font-family: "Inter", "Segoe UI", system-ui, sans-serif;
     background:
-      radial-gradient(circle at 12% 8%, hsl(210 20% 92%), transparent 30%),
-      radial-gradient(circle at 90% 12%, hsl(216 22% 93%), transparent 28%),
+      radial-gradient(circle at 12% 8%, hsl(219 22% 91%), transparent 30%),
+      radial-gradient(circle at 90% 12%, hsl(216 20% 92%), transparent 28%),
       hsl(var(--background));
   }
 
   ::selection {
     background: hsl(220 18% 84%);
     color: hsl(222 20% 14%);
+  }
+}
+
+@layer components {
+  .section-label {
+    @apply text-xs font-semibold uppercase tracking-[0.18em] text-muted-foreground;
+  }
+
+  .soft-card {
+    @apply rounded-xl border border-border bg-card/80 shadow-[0_10px_24px_hsl(222_20%_14%_/_0.06)];
   }
 }

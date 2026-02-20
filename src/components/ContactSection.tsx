@@ -26,10 +26,11 @@ const ContactSection = () => {
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.5 }}
         >
-          <h2 className="text-3xl font-bold tracking-tight text-foreground">Get In Touch</h2>
+          <p className="section-label">Contact</p>
+          <h2 className="mt-2 text-3xl font-bold tracking-tight text-foreground">Get In Touch</h2>
           <p className="mt-2 text-muted-foreground">Have a question or want to work together? Drop me a message.</p>
 
-          <form onSubmit={handleSubmit} className="mt-8 space-y-4 rounded-xl border border-border bg-card/80 p-6">
+          <form onSubmit={handleSubmit} className="soft-card mt-8 space-y-4 p-6">
             <input
               type="text" required placeholder="Your name"
               value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })}
@@ -47,7 +48,7 @@ const ContactSection = () => {
             />
             <button
               type="submit"
-              className="inline-flex items-center gap-2 rounded-full bg-foreground px-6 py-3 text-sm font-medium text-background transition-opacity hover:opacity-90"
+              className="inline-flex items-center gap-2 rounded-full bg-primary px-6 py-3 text-sm font-medium text-primary-foreground transition-all hover:-translate-y-0.5 hover:opacity-90"
             >
               <Send size={16} /> Send Message
             </button>

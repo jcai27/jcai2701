@@ -16,9 +16,10 @@ const AboutSection = () => {
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.5 }}
         >
-          <h2 className="text-3xl font-bold tracking-tight text-foreground">About Me</h2>
+          <p className="section-label">About</p>
+          <h2 className="mt-2 text-3xl font-bold tracking-tight text-foreground">About Me</h2>
           <div className="mt-10 grid gap-10 md:grid-cols-[200px_1fr]">
-            <div className="flex flex-col items-center gap-3 rounded-xl border border-border bg-secondary/35 p-5">
+            <div className="soft-card flex flex-col items-center gap-3 p-5">
               <img
                 src={personalInfo.avatarUrl}
                 alt={personalInfo.name}
@@ -32,12 +33,12 @@ const AboutSection = () => {
             <div>
               <p className="text-base leading-relaxed text-muted-foreground">{personalInfo.bio}</p>
               <div className="mt-8">
-                <h3 className="mb-3 text-sm font-semibold uppercase tracking-widest text-muted-foreground">Tech Stack</h3>
+                <h3 className="section-label mb-3">Tech Stack</h3>
                 <div className="flex flex-wrap gap-2">
                   {skills.map((skill) => (
                     <span
                       key={skill}
-                      className="rounded-full border border-border bg-secondary/50 px-3 py-1 text-xs font-medium text-secondary-foreground"
+                      className="rounded-full border border-border bg-secondary/60 px-3 py-1 text-xs font-medium text-secondary-foreground"
                     >
                       {skill}
                     </span>

@@ -30,6 +30,10 @@ const Navbar = () => {
     }
   };
 
+  const isRouteActive = (href: string) => {
+    return href.startsWith("/") && !href.startsWith("/#") && location.pathname === href;
+  };
+
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 border-b border-border bg-background/85 backdrop-blur-md">
       <div className="mx-auto flex max-w-5xl items-center justify-between px-6 py-4">
@@ -41,7 +45,10 @@ const Navbar = () => {
           {navItems.map((item) =>
             item.href.startsWith("/") && !item.href.startsWith("/#") ? (
               <li key={item.label}>
-                <Link to={item.href} className="text-sm text-muted-foreground transition-colors hover:text-foreground">
+                <Link
+                  to={item.href}
+                  className={`text-sm transition-colors hover:text-foreground ${isRouteActive(item.href) ? "text-foreground underline decoration-primary/60 underline-offset-8" : "text-muted-foreground"}`}
+                >
                   {item.label}
                 </Link>
               </li>
@@ -66,7 +73,11 @@ const Navbar = () => {
             {navItems.map((item) =>
               item.href.startsWith("/") && !item.href.startsWith("/#") ? (
                 <li key={item.label}>
-                  <Link to={item.href} onClick={() => setOpen(false)} className="text-sm text-muted-foreground transition-colors hover:text-foreground">
+                  <Link
+                    to={item.href}
+                    onClick={() => setOpen(false)}
+                    className={`text-sm transition-colors hover:text-foreground ${isRouteActive(item.href) ? "text-foreground underline decoration-primary/60 underline-offset-4" : "text-muted-foreground"}`}
+                  >
                     {item.label}
                   </Link>
                 </li>

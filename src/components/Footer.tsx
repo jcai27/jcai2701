@@ -6,7 +6,7 @@ const Footer = () => {
   } = usePortfolio();
 
   return (
-    <footer className="border-t border-border bg-secondary/20 py-8 px-6 text-center text-sm text-muted-foreground">
+    <footer className="border-t border-border bg-secondary/30 py-8 px-6 text-center text-sm text-muted-foreground">
       © {new Date().getFullYear()} {personalInfo.name}. All rights reserved.
     </footer>
   );
