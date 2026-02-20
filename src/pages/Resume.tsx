@@ -35,22 +35,8 @@ const Resume = () => {
                   <h1 className="mt-2 text-4xl font-bold tracking-tight text-foreground sm:text-5xl">{personalInfo.name}</h1>
                   <p className="mt-2 text-lg text-muted-foreground">{personalInfo.title}</p>
                 </div>
-                <a
-                  href={resumeUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 rounded-full bg-primary px-5 py-2.5 text-sm font-medium text-primary-foreground transition-opacity hover:opacity-90"
-                >
-                  <Download size={16} /> Download PDF
-                </a>
-              </div>
-            </div>
-
-            <div className="mt-8 grid gap-6 lg:grid-cols-[280px_1fr]">
-              <aside className="space-y-6">
-                <section className="rounded-xl border border-border bg-card/70 p-5">
-                  <h2 className="section-label">Contact</h2>
-                  <div className="mt-4 space-y-3 text-sm text-muted-foreground">
+                <div className="flex flex-col items-start gap-3 sm:items-end">
+                  <div className="space-y-2 text-sm text-muted-foreground">
                     <a href={`mailto:${personalInfo.email}`} className="flex items-center gap-2 hover:text-foreground">
                       <Mail size={15} /> {personalInfo.email}
                     </a>
@@ -60,23 +46,21 @@ const Resume = () => {
                     <a href={personalInfo.linkedin} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 hover:text-foreground">
                       <Linkedin size={15} /> LinkedIn
                     </a>
-                    <p className="flex items-center gap-2">
-                      <MapPin size={15} /> {personalInfo.location}
-                    </p>
                   </div>
-                </section>
+                  <a
+                    href={resumeUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 rounded-full bg-primary px-5 py-2.5 text-sm font-medium text-primary-foreground transition-opacity hover:opacity-90"
+                  >
+                    <Download size={16} /> Download PDF
+                  </a>
+                </div>
+              </div>
+            </div>
 
-                <section className="rounded-xl border border-border bg-card/70 p-5">
-                  <h2 className="section-label">Skills</h2>
-                  <div className="mt-4 flex flex-wrap gap-2">
-                    {skills.map((skill) => (
-                      <span key={skill} className="rounded-full border border-border bg-secondary/50 px-3 py-1 text-xs font-medium text-secondary-foreground">
-                        {skill}
-                      </span>
-                    ))}
-                  </div>
-                </section>
-
+            <div className="mt-8 grid gap-6 lg:grid-cols-[280px_1fr]">
+              <aside className="space-y-6">
                 <section className="rounded-xl border border-border bg-card/70 p-5">
                   <h2 className="flex items-center gap-2 text-sm font-semibold uppercase tracking-widest text-muted-foreground">
                     <GraduationCap size={16} /> Education
@@ -101,6 +85,17 @@ const Resume = () => {
                           </div>
                         </div>
                       </div>
+                    ))}
+                  </div>
+                </section>
+
+                <section className="rounded-xl border border-border bg-card/70 p-5">
+                  <h2 className="section-label">Skills</h2>
+                  <div className="mt-4 flex flex-wrap gap-2">
+                    {skills.map((skill) => (
+                      <span key={skill} className="rounded-full border border-border bg-secondary/50 px-3 py-1 text-xs font-medium text-secondary-foreground">
+                        {skill}
+                      </span>
                     ))}
                   </div>
                 </section>
