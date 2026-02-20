@@ -8,35 +8,35 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    --background: 38 28% 96%;
+    --foreground: 20 23% 17%;
 
-    --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    --card: 36 33% 98%;
+    --card-foreground: 20 23% 17%;
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+    --popover: 36 33% 98%;
+    --popover-foreground: 20 23% 17%;
 
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
+    --primary: 15 28% 24%;
+    --primary-foreground: 40 35% 97%;
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    --secondary: 38 22% 91%;
+    --secondary-foreground: 20 23% 17%;
 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    --muted: 36 17% 90%;
+    --muted-foreground: 20 10% 35%;
 
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    --accent: 34 29% 86%;
+    --accent-foreground: 20 23% 17%;
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 40% 98%;
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    --border: 30 22% 81%;
+    --input: 30 22% 81%;
+    --ring: 20 23% 17%;
 
-    --radius: 0.5rem;
+    --radius: 0.35rem;
 
     --sidebar-background: 0 0% 98%;
 
@@ -105,6 +105,41 @@ All colors MUST be HSL.
 
   body {
     @apply bg-background text-foreground antialiased;
-    font-family: "Inter", ui-sans-serif, system-ui, sans-serif;
+    font-family: "Source Sans 3", "Segoe UI", sans-serif;
+    background-image:
+      linear-gradient(to right, hsl(30 22% 90% / 0.45) 1px, transparent 1px),
+      linear-gradient(to bottom, hsl(30 22% 90% / 0.45) 1px, transparent 1px);
+    background-size: 44px 44px;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: "Cormorant Garamond", Georgia, serif;
+    letter-spacing: -0.015em;
+  }
+
+  ::selection {
+    background: hsl(28 36% 80%);
+    color: hsl(20 23% 17%);
+  }
+}
+
+@layer components {
+  .section-shell {
+    @apply mx-auto max-w-6xl;
+  }
+
+  .eyebrow {
+    @apply text-xs uppercase tracking-[0.22em] text-muted-foreground;
+  }
+
+  .section-title {
+    @apply mt-2 text-4xl font-semibold leading-tight text-foreground sm:text-5xl;
+  }
+
+  .paper-card {
+    @apply border border-border bg-card shadow-[0_10px_35px_hsl(20_23%_17%_/_0.08)];
   }
 }

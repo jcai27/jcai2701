@@ -31,24 +31,23 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-md border-b border-border">
-      <div className="mx-auto max-w-5xl flex items-center justify-between px-6 py-4">
-        <Link to="/" className="text-lg font-semibold tracking-tight text-foreground">
+    <nav className="fixed top-0 left-0 right-0 z-50 border-b border-border/90 bg-background/90 backdrop-blur-md">
+      <div className="section-shell flex items-center justify-between px-6 py-4">
+        <Link to="/" className="text-2xl font-semibold text-foreground">
           {personalInfo.name}
         </Link>
 
-        {/* Desktop */}
         <ul className="hidden md:flex gap-8">
           {navItems.map((item) =>
             item.href.startsWith("/") && !item.href.startsWith("/#") ? (
               <li key={item.label}>
-                <Link to={item.href} className="text-sm text-muted-foreground hover:text-foreground transition-colors">
+                <Link to={item.href} className="eyebrow tracking-[0.18em] text-muted-foreground transition-colors hover:text-foreground">
                   {item.label}
                 </Link>
               </li>
             ) : (
               <li key={item.label}>
-                <button onClick={() => handleClick(item.href)} className="text-sm text-muted-foreground hover:text-foreground transition-colors">
+                <button onClick={() => handleClick(item.href)} className="eyebrow tracking-[0.18em] text-muted-foreground transition-colors hover:text-foreground">
                   {item.label}
                 </button>
               </li>
@@ -56,26 +55,24 @@ const Navbar = () => {
           )}
         </ul>
 
-        {/* Mobile toggle */}
         <button className="md:hidden text-foreground" onClick={() => setOpen(!open)} aria-label="Toggle menu">
           {open ? <X size={20} /> : <Menu size={20} />}
         </button>
       </div>
 
-      {/* Mobile menu */}
       {open && (
-        <div className="md:hidden border-b border-border bg-background px-6 pb-4">
+        <div className="md:hidden border-t border-border bg-background px-6 pb-4">
           <ul className="flex flex-col gap-3">
             {navItems.map((item) =>
               item.href.startsWith("/") && !item.href.startsWith("/#") ? (
                 <li key={item.label}>
-                  <Link to={item.href} onClick={() => setOpen(false)} className="text-sm text-muted-foreground hover:text-foreground transition-colors">
+                  <Link to={item.href} onClick={() => setOpen(false)} className="eyebrow text-muted-foreground transition-colors hover:text-foreground">
                     {item.label}
                   </Link>
                 </li>
               ) : (
                 <li key={item.label}>
-                  <button onClick={() => handleClick(item.href)} className="text-sm text-muted-foreground hover:text-foreground transition-colors">
+                  <button onClick={() => handleClick(item.href)} className="eyebrow text-muted-foreground transition-colors hover:text-foreground">
                     {item.label}
                   </button>
                 </li>
