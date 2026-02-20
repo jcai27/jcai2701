@@ -65,9 +65,9 @@ const Resume = () => {
                   <h2 className="flex items-center gap-2 text-sm font-semibold uppercase tracking-widest text-muted-foreground">
                     <GraduationCap size={16} /> Education
                   </h2>
-                  <div className="mt-4 space-y-3">
+                  <div className="mt-4 divide-y divide-border">
                     {education.map((edu, idx) => (
-                      <div key={`${edu.degree}-${edu.school}-${idx}`} className="rounded-lg border border-border bg-background/70 p-3">
+                      <div key={`${edu.degree}-${edu.school}-${idx}`} className="py-3 first:pt-0 last:pb-0">
                         <div className="flex gap-3">
                           <div className="h-10 w-10 shrink-0 overflow-hidden rounded-md border border-border bg-secondary/50">
                             {edu.logoUrl ? (
@@ -106,9 +106,9 @@ const Resume = () => {
                   <h2 className="flex items-center gap-2 text-sm font-semibold uppercase tracking-widest text-muted-foreground">
                     <Briefcase size={16} /> Experience
                   </h2>
-                  <div className="mt-6 space-y-4">
+                  <div className="mt-6 divide-y divide-border">
                     {experience.map((exp, idx) => (
-                      <div key={`${exp.role}-${exp.company}-${idx}`} className="rounded-lg border border-border bg-background/70 p-4">
+                      <div key={`${exp.role}-${exp.company}-${idx}`} className="py-4 first:pt-0 last:pb-0">
                         <div className="flex gap-4">
                           <div className="h-12 w-12 shrink-0 overflow-hidden rounded-md border border-border bg-secondary/50">
                             {exp.logoUrl ? (
