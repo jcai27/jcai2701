@@ -6,7 +6,7 @@ import { usePortfolio } from "@/context/PortfolioContext";
 const navItems = [
   { label: "Home", href: "/#hero" },
   { label: "About", href: "/#about" },
-  { label: "About Me", href: "/beyond-work" },
+  { label: "Life", href: "/beyond-work" },
   { label: "Projects", href: "/#projects" },
   { label: "Resume", href: "/resume" },
   { label: "Contact", href: "/#contact" },
