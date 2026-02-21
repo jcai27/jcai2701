@@ -3,6 +3,8 @@ import Footer from "@/components/Footer";
 import { motion } from "framer-motion";
 import { usePortfolio } from "@/context/PortfolioContext";
 
+const isVideoUrl = (url: string) => /\.(mp4|webm|mov|m4v|ogg)(\?.*)?$/i.test(url);
+
 const BeyondWork = () => {
   const {
     data: { beyondWorkSections, personalInfo },
@@ -57,10 +59,22 @@ const BeyondWork = () => {
                       >
                         <div className="h-56 sm:h-64">
                           {url ? (
-                            <img src={url} alt={`${item.title} ${imageIndex + 1}`} className="h-full w-full object-cover" />
+                            isVideoUrl(url) ? (
+                              <video
+                                src={url}
+                                className="h-full w-full object-cover"
+                                autoPlay
+                                loop
+                                muted
+                                playsInline
+                                preload="metadata"
+                              />
+                            ) : (
+                              <img src={url} alt={`${item.title} ${imageIndex + 1}`} className="h-full w-full object-cover" />
+                            )
                           ) : (
                             <div className="flex h-full w-full items-center justify-center text-sm text-muted-foreground">
-                              Add image {imageIndex + 1} in admin
+                              Add photo or video {imageIndex + 1} in admin
                             </div>
                           )}
                         </div>

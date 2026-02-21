@@ -191,7 +191,7 @@ const Admin = () => {
     }));
   };
 
-  const handleBeyondWorkImageUpload = async (sectionIdx: number, imageIdx: number, file: File | null) => {
+  const handleBeyondWorkMediaUpload = async (sectionIdx: number, imageIdx: number, file: File | null) => {
     if (!file) return;
     let assetUrl = await fileToDataUrl(file);
     if (isServerConfigured) {
@@ -200,7 +200,7 @@ const Admin = () => {
         if (uploadedUrl) assetUrl = uploadedUrl;
       } catch {
         toast({
-          title: "Hobby image upload warning",
+          title: "Hobby media upload warning",
           description: "Storage upload failed, using browser-local copy for now.",
         });
       }
@@ -377,13 +377,13 @@ const Admin = () => {
                               }),
                             }))
                           }
-                          placeholder={`Image ${imageIdx + 1} URL (optional)`}
+                          placeholder={`Media ${imageIdx + 1} URL (image or video)`}
                         />
                         <input
                           type="file"
-                          accept="image/*"
+                          accept="image/*,video/*"
                           className="text-sm text-muted-foreground"
-                          onChange={(e) => void handleBeyondWorkImageUpload(idx, imageIdx, e.target.files?.[0] || null)}
+                          onChange={(e) => void handleBeyondWorkMediaUpload(idx, imageIdx, e.target.files?.[0] || null)}
                         />
                       </div>
                     ))}
