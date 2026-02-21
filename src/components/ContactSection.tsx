@@ -18,8 +18,8 @@ const ContactSection = () => {
   };
 
   return (
-    <section id="contact" className="px-6 py-24">
-      <div className="mx-auto max-w-2xl">
+    <section id="contact" className="px-6 py-20">
+      <div className="section-shell max-w-2xl">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -46,10 +46,7 @@ const ContactSection = () => {
               value={form.message} onChange={(e) => setForm({ ...form, message: e.target.value })}
               className="w-full resize-none rounded-lg border border-border bg-background px-4 py-3 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring"
             />
-            <button
-              type="submit"
-              className="inline-flex items-center gap-2 rounded-full bg-primary px-6 py-3 text-sm font-medium text-primary-foreground transition-all hover:-translate-y-0.5 hover:opacity-90"
-            >
+            <button type="submit" className="cta-primary">
               <Send size={16} /> Send Message
             </button>
           </form>

@@ -60,7 +60,7 @@ export const PORTFOLIO_STORAGE_KEY = "portfolio-cms-v1";
 
 export const defaultPortfolioData: PortfolioData = {
   personalInfo: {
-    name: "Alex Johnson",
+    name: "Joshua Cai",
     title: "Full-Stack Developer",
     tagline: "I build elegant, performant web applications that solve real problems.",
     email: "alex@example.com",

@@ -15,7 +15,7 @@ const BeyondWork = () => {
       <Navbar />
       <main className="pt-20">
         <section className="px-6 py-16">
-          <div className="mx-auto max-w-5xl">
+          <div className="section-shell">
             <p className="section-label">Beyond Work</p>
             <h1 className="mt-2 text-4xl font-bold tracking-tight text-foreground sm:text-5xl">
               Beyond Work
@@ -29,14 +29,14 @@ const BeyondWork = () => {
         {beyondWorkSections.map((item, idx) => (
           <section
             key={`${item.title}-${idx}`}
-            className={`w-full px-6 py-16 ${idx % 2 === 0 ? "bg-secondary/25" : "bg-background"}`}
+            className={`w-full px-6 py-16 ${idx % 2 === 0 ? "bg-secondary/20" : "bg-background"}`}
           >
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-100px" }}
               transition={{ duration: 0.5 }}
-              className="mx-auto max-w-6xl"
+              className="mx-auto max-w-5xl"
             >
               <div className={`grid items-start gap-10 lg:grid-cols-2 ${idx % 2 === 1 ? "lg:[&>*:first-child]:order-2 lg:[&>*:last-child]:order-1" : ""}`}>
                 <div>
@@ -45,17 +45,17 @@ const BeyondWork = () => {
                   <p className="mt-4 max-w-2xl text-base leading-relaxed text-muted-foreground">{item.description}</p>
                 </div>
 
-                <div className="grid gap-4 md:relative md:min-h-[420px] md:block">
+                <div className="grid gap-4 md:relative md:min-h-[390px] md:block">
                   {[0, 1].map((imageIndex) => {
                     const url = item.imageUrls?.[imageIndex];
                     const isFirst = imageIndex === 0;
                     const cardPosition = isFirst
-                      ? "md:left-0 md:top-0 md:w-[74%] md:rotate-[-1.5deg]"
-                      : "md:right-0 md:bottom-2 md:w-[66%] md:rotate-[1.5deg]";
+                      ? "md:left-0 md:top-0 md:w-[73%] md:rotate-[-0.8deg]"
+                      : "md:right-0 md:bottom-4 md:w-[64%] md:rotate-[0.9deg]";
                     return (
                       <div
                         key={imageIndex}
-                        className={`${cardPosition} overflow-hidden rounded-2xl border border-border bg-card shadow-[0_12px_30px_hsl(222_20%_14%_/_0.16)] md:absolute`}
+                        className={`${cardPosition} overflow-hidden rounded-2xl border border-border bg-card shadow-[0_10px_22px_hsl(222_20%_14%_/_0.12)] md:absolute`}
                       >
                         <div className="h-56 sm:h-64">
                           {url ? (

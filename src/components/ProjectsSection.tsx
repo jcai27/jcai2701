@@ -8,8 +8,8 @@ const ProjectsSection = () => {
   } = usePortfolio();
 
   return (
-    <section id="projects" className="bg-secondary/25 px-6 py-24">
-      <div className="mx-auto max-w-5xl">
+    <section id="projects" className="bg-secondary/25 px-6 py-20">
+      <div className="section-shell">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -29,8 +29,8 @@ const ProjectsSection = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-50px" }}
               transition={{ duration: 0.4, delay: i * 0.1 }}
-              className={`group rounded-xl border bg-card p-6 transition-all hover:-translate-y-1 hover:shadow-lg ${
-                i === 0 ? "border-primary/35 shadow-[0_14px_30px_hsl(222_20%_14%_/_0.12)] sm:col-span-2" : "border-border"
+              className={`group rounded-xl border bg-card p-6 transition-all hover:-translate-y-0.5 hover:shadow-[0_14px_26px_hsl(222_20%_14%_/_0.10)] ${
+                i === 0 ? "border-primary/30 shadow-[0_12px_24px_hsl(222_20%_14%_/_0.10)] sm:col-span-2" : "border-border"
               }`}
             >
               <h3 className="text-lg font-semibold text-card-foreground">{project.title}</h3>

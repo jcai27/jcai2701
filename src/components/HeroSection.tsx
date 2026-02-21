@@ -13,12 +13,12 @@ const HeroSection = () => {
   };
 
   return (
-    <section id="hero" className="flex min-h-screen items-center justify-center px-6">
+    <section id="hero" className="flex min-h-screen items-center justify-center px-6 py-20">
       <motion.div
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.7, ease: "easeOut" }}
-        className="max-w-3xl text-center"
+        className="section-shell max-w-3xl text-center"
       >
         <p className="section-label mb-3">
           {personalInfo.title}
@@ -32,7 +32,7 @@ const HeroSection = () => {
         <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
           <button
             onClick={() => scrollTo("projects")}
-            className="inline-flex items-center gap-2 rounded-full bg-primary px-6 py-3 text-sm font-medium text-primary-foreground shadow-sm transition-all hover:-translate-y-0.5 hover:opacity-90"
+            className="cta-primary"
           >
             View Projects <ArrowDown size={16} />
           </button>
@@ -40,7 +40,7 @@ const HeroSection = () => {
             href={resumeUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 rounded-full border border-border bg-secondary/40 px-6 py-3 text-sm font-medium text-foreground shadow-sm transition-all hover:-translate-y-0.5 hover:bg-secondary"
+            className="cta-secondary"
           >
             <FileText size={16} /> Download Resume
           </a>
